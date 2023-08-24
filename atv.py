@@ -1,6 +1,7 @@
 from typing import Any
 import math
 import random
+import numpy as np
 
 #1
 
@@ -343,11 +344,28 @@ class Equacao():
             y += (self.coeficientes[i]) * (x ** (self.len - (i + 1)))
         print(y)
 
-    def somar_polinomio(self, coeficientes=list):
-        pass
+    def somar_polinomios(self, obj2):
+        minlen = min(len(obj2.coeficientes), len(self.coeficientes))
+        maxlen = max(len(obj2.coeficientes), len(self.coeficientes))
+        resp = []
+        for i in range(minlen):
+            resp.append(obj2.coeficientes[i] + self.coeficientes[i])
+        for i in range(minlen, maxlen):
+            if len(obj2.coeficientes) > len(self.coeficientes):
+                resp.append(obj2.coeficientes[i])
+            else:
+                resp.append(self.coeficientes[i])
+        print(np.poly1d(resp))
 
-    def multiplicar_polinomios(self, coeficientes=list):
-        pass
+    def multiplicar_polinomios(self, obj2):
+        self.coeficientes = np.poly1d(self.coeficientes)
+        obj2.coeficientes = np.poly1d(obj2.coeficientes)
+        resultado = np.poly1d(self.coeficientes * obj2.coeficientes)
+        print(resultado)
+
 
 e1 = Equacao([1, -3, 2])
 e1.achar_valor_y(1)
+e2 = Equacao([4, 3, 2, 1])
+e1.somar_polinomios(e2)
+e1.multiplicar_polinomios(e2)
