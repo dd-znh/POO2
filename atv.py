@@ -2,8 +2,44 @@ from typing import Any
 import math
 import random
 
-#2
+#1
 
+class Cliente():
+    def __init__(self, nome, cpf, telefone):
+        self.nome = nome
+        self.cpf = cpf
+        self.telefone = telefone
+
+class Conta():
+    def __init__(self, titulares, premium:bool):
+        self.titulares = titulares
+        self.saldo = 0
+        self.dados = []
+        self.premium = premium
+        for obj in titulares:
+            self.dados.append(obj.nome, obj.telefone)
+        
+    def deposito(self, valor):
+        if valor > 0:
+            self.saldo += valor
+        else:
+            return "operacao indisponivel"
+
+    def saque(self, valor):
+        if self.saldo - valor >= 0 or self.premium:
+            self.saldo -= valor
+        else:
+            return "operacao indisponivel"
+
+    def print_saldo(self):
+        print("seu saldo é de", self.saldo)
+    
+    # def print_
+p1 = Cliente("pedrinho", 12345678910, 48991522161)
+# c1 = Conta(p1)
+
+
+#2
 class Livro(): # classe livro com seus atributos
     def __init__(self, titulo, autores, ano, editora, edicao, volume):
         self.id = id
