@@ -325,3 +325,29 @@ class CampoMinado():
 #jogo0 = CampoMinado(3, 1) # teste
 #jogo1 = CampoMinado(9, 10) # facil
 #jogo2 = CampoMinado(16, 40) # medio
+
+# 3
+
+class Equacao():
+    def __init__(self, coeficientes=list):
+        self.coeficientes = coeficientes
+        self.grau = len(coeficientes) - 1
+        self.len = len(coeficientes)
+    
+    def print_grau(self):
+        print("a equacao é de grau", self.grau)
+    
+    def achar_valor_y(self, x):
+        y = 0
+        for i in range(self.len):
+            y += (self.coeficientes[i]) * (x ** (self.len - (i + 1)))
+        print(y)
+
+    def somar_polinomio(self, coeficientes=list):
+        pass
+
+    def multiplicar_polinomios(self, coeficientes=list):
+        pass
+
+e1 = Equacao([1, -3, 2])
+e1.achar_valor_y(1)
