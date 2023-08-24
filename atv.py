@@ -4,40 +4,56 @@ import random
 
 #1
 
-class Cliente():
+class Cliente(): # classe cliente e seus atributos
     def __init__(self, nome, cpf, telefone):
         self.nome = nome
         self.cpf = cpf
         self.telefone = telefone
 
-class Conta():
-    def __init__(self, titulares, premium:bool):
+class Conta(): # classe conta e seus atributos
+    def __init__(self, titulares:list, premium:bool):
         self.titulares = titulares
         self.saldo = 0
         self.dados = []
-        self.premium = premium
+        self.premium = premium # conta sem limite de cheque especial
         for obj in titulares:
-            self.dados.append(obj.nome, obj.telefone)
+            self.dados.append((obj.nome, obj.telefone)) # matriz dos dados dos titulares
+        self.extrato = [] # armazena tuplas com saldo antes da operacao, saldo depois da operacao e operacao 
         
-    def deposito(self, valor):
+    def deposito(self, valor): # nao se pode depositar valores negativos
         if valor > 0:
+            self.extrato.append((self.saldo, self.saldo + valor, "deposito"))
             self.saldo += valor
         else:
-            return "operacao indisponivel"
+            print("operacao indisponivel")
 
-    def saque(self, valor):
-        if self.saldo - valor >= 0 or self.premium:
+    def saque(self, valor): # nao se pode sacar valores "positivos"
+        if (self.saldo - valor >= 0 or self.premium) and valor > 0:
+            self.extrato.append((self.saldo, self.saldo - valor, "saque"))
             self.saldo -= valor
         else:
-            return "operacao indisponivel"
+            print("operacao indisponivel")
 
-    def print_saldo(self):
+    def print_saldo(self): # metodo para printar saldo
         print("seu saldo é de", self.saldo)
-    
-    # def print_
-p1 = Cliente("pedrinho", 12345678910, 48991522161)
-# c1 = Conta(p1)
 
+    def print_titulares(self): # metodo para printar matriz dos dados dos titulares
+        print(self.dados)
+    
+    def print_extrato(self): # metodo para printar lista do extrato
+        print(self.extrato)
+
+p1 = Cliente("pedrinho", 12345678910, 48991522161) # criacao de objetos para teste
+p2 = Cliente("joaozinho", 10987654321, 4898843991010)
+c1 = Conta([p1, p2], False)
+c2 = Conta([p1], True)
+c1.deposito(500)
+c1.saque(200)
+c1.saque(400)
+c2.deposito(100)
+c1.print_saldo()
+c1.print_titulares()
+c1.print_extrato()
 
 #2
 class Livro(): # classe livro com seus atributos
