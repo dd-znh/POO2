@@ -89,7 +89,6 @@ b1 = Biblioteca(1) # exemplificando
 b1.adicionar_livro(livro1)
 b1.pesquisar_livro("1500")
         
-
 #4
 
 class Numeros: # classe numeros com o respectivo numero como atributo
@@ -328,7 +327,7 @@ class CampoMinado():
 #jogo2 = CampoMinado(16, 40) # medio
 
 # 3
-
+# uso da biblioteca numpy para formatação e multiplicacao de polinomios
 class Equacao():
     def __init__(self, coeficientes=list):
         self.coeficientes = coeficientes
@@ -355,7 +354,7 @@ class Equacao():
                 resp.append(obj2.coeficientes[i])
             else:
                 resp.append(self.coeficientes[i])
-        print(np.poly1d(resp))
+        print((resp))
 
     def multiplicar_polinomios(self, obj2):
         self.coeficientes = np.poly1d(self.coeficientes)
@@ -369,3 +368,5 @@ e1.achar_valor_y(1)
 e2 = Equacao([4, 3, 2, 1])
 e1.somar_polinomios(e2)
 e1.multiplicar_polinomios(e2)
+
+# feitos: 1, 2, 3, 4, 6, 8, 9, 10
